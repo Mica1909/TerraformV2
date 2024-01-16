@@ -1,25 +1,18 @@
-provider "azurerm" {
-  features = {}
+module "example_vnet" {
+  source              = "./modules/vnet"  # Ruta local al directorio del módulo
+  resource_group_name = "Vnet-Produccion"
+  location            = "East US"
+  vnet_name           = "LandingZone"
+  address_space       = ["10.0.0.0/16"]
+  tags                = {
+    environment = "production"
+  }
 }
 
-module "restrict_region" {
-  source = "../policy_module"
+output "vnet_id" {
+  value = module.example_vnet.vnet_id
+}
 
-  policy_name        = "restrict-region"
-  policy_display_name= "Restrict Resources to a Region"
-  policy_description = "This policy restricts the creation of resources to a specific region."
-
-  policy_rule = <<POLICY_RULE
-    {
-      "if": {
-        "not": {
-          "field": "location",
-          "in": ["East US", "West US"]
-        }
-      },
-      "then": {
-        "effect": "deny"
-      }
-    }
-  POLICY_RULE
+output "vnet_address_space" {
+  value = module.example_vnet.vnet_address_space
 }
