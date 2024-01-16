@@ -8,11 +8,3 @@ module "example_vnet" {
     environment = "production"
   }
 }
-
-output "vnet_id" {
-  value = module.example_vnet.vnet_id
-}
-
-output "vnet_address_space" {
-  value = module.example_vnet.vnet_address_space
-}
