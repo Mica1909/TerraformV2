@@ -1,4 +1,4 @@
-module "example_vnet" {
+module "vnet" {
   source              = "./modules/vnet"  # Ruta local al directorio del módulo
   resource_group_name = "Vnet-Produccion"
   location            = "East US"
