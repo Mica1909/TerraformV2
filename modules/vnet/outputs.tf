@@ -1,7 +1,11 @@
+
+
 output "vnet_id" {
-  value = azurerm_virtual_network.vnet.id
+  description = "ID de la red virtual"
+  value       = module.vnet.virtual_network_id
 }
 
 output "vnet_address_space" {
-  value = azurerm_virtual_network.vnet.address_space
+  description = "Espacio de direcciones de la red virtual"
+  value       = module.vnet.virtual_network_address_space
 }
