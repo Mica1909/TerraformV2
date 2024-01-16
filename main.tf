@@ -5,7 +5,7 @@ provider "azurerm" {
 }
 
 module "vnet" {
-  source = "./modules/vnet_module"
+  source = "./modules/vnet_modules"
 
   vnet_name          = "my-vnet"
   address_space      = ["10.0.0.0/16"]
