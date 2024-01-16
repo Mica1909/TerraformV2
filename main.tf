@@ -1,5 +1,5 @@
 module "example_vnet" {
-  source              = "./modules/vnet"  # Ruta local al directorio del módulo
+  source              = "/home/adminarsa/github/TerraformV2/modules/vnet"  # Ruta local al directorio del módulo
   resource_group_name = "Vnet-Produccion"
   location            = "East US"
   vnet_name           = "LandingZone"
