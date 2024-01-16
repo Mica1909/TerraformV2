@@ -24,7 +24,12 @@ module "vnet" {
   vnet_name          = "my-vnet"
   address_space      = ["10.0.0.0/16"]
   location           = "East US"
-  resource_group_name = "my-resource-group"
+  resource_group_name = "state-demo"
+}
+
+resource "azurerm_resource_group" "state-demo-secure" {
+  name     = "state-demo"
+  location = "eastus"
 }
 
 output "vnet_id" {
