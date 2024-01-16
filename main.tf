@@ -25,6 +25,7 @@ module "vnet" {
   address_space      = ["10.0.0.0/16"]
   location           = "East US"
   resource_group_name = "state-demo"
+  depends_on = [azurerm_resource_group.main]
 }
 
 resource "azurerm_resource_group" "state-demo-secure" {
