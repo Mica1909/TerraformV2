@@ -7,7 +7,7 @@ resource "azurerm_virtual_network" "existing_vnet" {
 
 resource "azurerm_subnet" "existing_subnet" {
   name                 = var.subnet_name
-  resource_group_name  = var.resource_group_name  # Si es necesario para la subred, pero no para la VNet
+  # resource_group_name  = var.resource_group_name  # Si es necesario para la subred, pero no para la VNet
   virtual_network_name = azurerm_virtual_network.existing_vnet.name
   address_prefixes     = var.subnet_address_prefixes
 }
