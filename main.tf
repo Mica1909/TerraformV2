@@ -1,43 +1,15 @@
-terraform {
-  required_providers {
-    azurerm = {
-      source  = "hashicorp/azurerm"
-      version = "~>3.0"
-    }
-  }
-  backend "azurerm" {
-      resource_group_name  = "tfstate"
-      storage_account_name = "tfstatearsa"
-      container_name       = "tfstate"
-      key                  = "terraform.tfstate"
-  }
+# main.tf
 
+module "vne_existentes" {
+  source              = "./modules/vne_existentes"
+  resource_group_name = "int-dev-test"
+  vnet_name           = "arsa-dev-test-vnet"
+  subnet_name         = "arsa-dev-test-subnet"
 }
 
-provider "azurerm" {
-  features {}
-}
-
-module "vnet" {
-  source = "./modules/vnet_modules"
-
-  vnet_name          = "my-vnet"
-  address_space      = ["10.0.0.0/16"]
-  location           = "East US"
-  resource_group_name = "rg"
-  depends_on = [module.rg]
-}
-
-module "rg" {
-  source              = "./modules/resource_group"
-  resource_group_name = "rg"
+module "vm" {
+  source              = "./modules/vm"
+  resource_group_name = "myResourceGroup"
   location            = "East US"
-}
-
-output "vnet_id" {
-  value = module.vnet.vnet_id
-}
-
-output "resource_group_id" {
-  value = module.rg.resource_group_id
+  subnet_id           = module.network.azurerm_subnet.existing.id
 }
