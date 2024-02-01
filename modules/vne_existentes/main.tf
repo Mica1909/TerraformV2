@@ -1,6 +1,8 @@
 # En el código fuente de tu módulo
 
 resource "azurerm_virtual_network" "existing_vnet" {
+  location            = "eastus2"
+  resource_group_name = "arsa-dev-test-vnet"
   name                = var.vnet_name
   address_space       = ["10.200.128.0/23"]  # Ajusta según la configuración de tu VNet existente
 }
