@@ -26,6 +26,3 @@ resource "azurerm_virtual_network" "vnet" {
   
 }
 
-
-  tags = var.tags
-
